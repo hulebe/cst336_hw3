@@ -10,40 +10,31 @@
     <body>
         <h1>Weather</h1>    
         <hr>
-        
         Check your local weather! <br><br>
         <form id="weatherForm">
-            Zip Code: <input type="text" id="zip" name="zip"><br>
+            Zip Code:   <input type="text" id="zip" name="zip">
+                        <span id="invalidZip"></span>
+            <input type="submit" id="search" value="Search"> <br>
             
-            Current Weather: <span id="currentWeather"></span><br>
-            
-            <input type="submit" value="Search"> <br>
-            
-            <span id="weather"></span>
+            <span id="currentWeather"></span>
         </form>
         
         <script>
-            var zipCodeAvailable = true;
+
              
-            $("#zip").on("change",async function() {
+            $("#zip").on("click",async function() {
+                
                 let zipCode = $("#zip").val();
-                let apiKey = `62ff9c71ee612bbc61238440ffeda18c`;
-                let url = `api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${apiKey}`;
+                let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=62ff9c71ee612bbc61238440ffeda18c`;
                 let response = await fetch(url);
                 let data = await response.json();
                 
-                $("#currentWeather").html(data.weather.temp);
-            
-            });
-            
-            function isFormValid(){
-                isValid = true;
-                if (!zipCodeAvailable){
-                    isValid = false;
-                }
+                console.log(data);
                 
-                return isValid;
-            }
+                $("#currentWeather").html("Current Weather:" + data.main.temp);
+
+            });
+
         </script>
     </body>
     

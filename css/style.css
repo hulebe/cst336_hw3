@@ -1,4 +1,11 @@
 h1 {
     font-size: 65px;
-    color: lightblue;
+    color: Magenta;
+}
+
+body {
+    text-align: center;
+    background-image: url("../img/sky.jpg");
+    font-weight: bold;
+    
 }
